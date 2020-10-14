@@ -57,7 +57,7 @@
             const t = document.getElementById(e.target.attributes[0].value);
             t.classList.toggle("menu__active"); 
             t.style.left = e.clientX - 430 + "px";
-            t.style.top = e.clientY -60 + "px";
+            t.style.top = e.clientY -210 + "px";
             const n = document.getElementsByClassName("menu__active");
             if (0 !== n.length)
                 for (var a = 0; a < n.length; a++) n[a].classList.remove("menu__active");
