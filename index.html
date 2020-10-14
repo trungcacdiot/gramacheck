@@ -56,7 +56,7 @@
         e.preventDefault(), "SPAN" === e.target.tagName && function(e) {
             const t = document.getElementById(e.target.attributes[0].value);
             t.classList.toggle("menu__active"); 
-            t.style.left = e.clientX - 530 + "px";
+            t.style.left = e.clientX - 430 + "px";
             t.style.top = e.clientY -60 + "px";
             const n = document.getElementsByClassName("menu__active");
             if (0 !== n.length)
