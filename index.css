@@ -1,0 +1,60 @@
+.spelling {
+  color: white;
+  background-color: #00a2e8;
+  cursor: pointer;
+}
+.grammar {
+  color: white;
+  background-color: #1e73be;
+  cursor: pointer;
+}
+.menu {
+  display: none;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  list-style: none;
+  max-height: 200px;
+  overflow-y: scroll;
+  overflow-x: visible;
+}
+.menu > div {
+  border-bottom: 1px solid #999;
+  padding: 5px;
+  font-size: 0.8rem;
+  max-width: 200px;
+}
+.menu > li {
+  border-bottom: 1px solid #999;
+  padding: 5px;
+  font-size: 0.8rem;
+  max-width: 200px;
+  cursor: pointer;
+}
+
+.menu__active {
+  width: 150px;
+  display: block;
+  position: absolute;
+
+  left: 0px;
+  top: 0px;
+}
+.menu__active > li:hover {
+  background-color: #eee;
+}
+
+form > div {
+  width: 100%;
+  height: 300px;
+  border: 1px solid rgb(219, 219, 219);
+  outline-color: #7a7a7a;
+  margin-bottom: 20px;
+  padding-left: 10px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  padding-right: 18px;
+  font-size: 14px;
+  overflow: hidden;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}

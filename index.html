@@ -1,0 +1,82 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="index.css" />
+    <script>
+    function replaceAt(input, search, replace, start, end) {
+        const st = input.slice(0, start);
+        const replacing = input.slice(start).replace(search, replace);
+        return st + replacing;
+    }
+    window.runGrammarChecker = function() {
+    window.addEventListener("mouseup", function(e) {
+        const t = document.getElementsByClassName("menu__active");
+        if (0 !== t.length)
+            for (var n = 0; n < t.length; n++) e.target != t[n] && t[n].classList.remove("menu__active")
+    });
+     document.getElementById("review1").addEventListener("click", function(e) {
+        var t = document.getElementById("form-field-field_0ea4a70").innerText,
+            n = "language=en-US&text=" + (t = (t = t.replace(/\n/g, " ABCD ")).replace(/\s+/g, " ")).trim() + ";",
+            n = "language=en-US&text=" + t + ";",
+            a = new XMLHttpRequest;
+        a.open("POST", "https://newgrammarbotspelling.herokuapp.com/");
+         a.setRequestHeader("content-type", "application/x-www-form-urlencoded")
+         ; a.onload = function() {
+            var e = a.response,
+                n = JSON.parse(e);
+            ! function(e, t) {
+                var n = t,
+                    a = n,
+                    r = 0;
+                var lastAppenedHtmlLength = 0;
+                var lastReplacedIndex = 0;
+                for (object of e.matches) {
+                    var s = object.offset,
+                        i = object.length;
+                    if ("grammar" === object.rule.issueType) var l = "grammar";
+                    else var l = "spelling";
+                    var o = `<div>${object.message}</div>`,
+                        c = "";
+                    for (element of object.replacements) c += `<li>${element.value}</li>`;
+                    const e = n.slice(s, s + i),
+                        t = `<span data-id=${r.toString()} class=${l}>${e}</span>`,
+                        m = `<ul id=${r.toString()} class="menu">\n      ${o}\n      ${c}\n      <li>Ignore this mistake</li>\n      </ul>`;
+                    let g = t.concat(m);
+                    a = replaceAt(a, e, g, s + lastAppenedHtmlLength);
+                    
+                    lastReplacedIndex = s + g.length;
+                    lastAppenedHtmlLength += g.length - e.length;
+                    r += 1
+                }
+                document.getElementById("form-field-field_0ea4a70").innerHTML = a.replace(/ABCD/g, " <br> ");
+            }(n, t)
+        }, a.send(n)
+    }), document.getElementById("form-field-field_0ea4a70").addEventListener("click", function(e) {
+        e.preventDefault(), "SPAN" === e.target.tagName && function(e) {
+            const t = document.getElementById(e.target.attributes[0].value);
+            t.classList.toggle("menu__active"); 
+            t.style.left = e.clientX - 20 + "px";
+            t.style.top = e.clientY +10 + "px";
+            const n = document.getElementsByClassName("menu__active");
+            if (0 !== n.length)
+                for (var a = 0; a < n.length; a++) n[a].classList.remove("menu__active");
+            t.classList.toggle("menu__active"), t.addEventListener("click", function(n) {
+                "LI" === n.target.tagName && ("Ignore this mistake" === n.target.innerText ? (e.target.className = "", t.remove()) : (e.target.outerHTML = n.target.innerHTML, e.target.className = "", t.remove()))
+            })
+        }(e)
+    })
+};
+    </script>
+    <title>Grammar checker</title>
+  </head>
+  <body onload="window.runGrammarChecker()">
+    <form method="POST" id="myform">
+      <div
+        contenteditable="true"
+        id="form-field-field_0ea4a70"
+      ></div>
+      <input type="button" value="Review" id="review1" />
+    </form>
+  </body>
+</html>
