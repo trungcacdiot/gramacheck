@@ -35,9 +35,6 @@
   width: 150px;
   display: block;
   position: absolute;
-
-  left: 0px;
-  top: 0px;
 }
 .menu__active > li:hover {
   background-color: #eee;
@@ -57,4 +54,7 @@ form > div {
   overflow: hidden;
   word-wrap: break-word;
   overflow-wrap: break-word;
+}
+#form-field-field_0ea4a7{
+  position: relative;
 }
